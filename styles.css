@@ -1,0 +1,221 @@
+/* =============================================================================
+ * Liquid Prettier — custom Bulma extensions, theme + syntax highlighting
+ * ===========================================================================*/
+
+:root {
+  --lp-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --lp-font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+
+  --lp-pane-bg: #fbfcfe;
+  --lp-pane-border: #dbdee6;
+  --lp-pane-text: #24292f;
+  --lp-hint: #6e7781;
+
+  --tok-delimiter: #8250df;
+  --tok-keyword: #b02a37;
+  --tok-braze-attr: #0a7c42;
+  --tok-string: #9a6700;
+  --tok-filter: #0969da;
+  --tok-comment: #6e7781;
+}
+
+html[data-theme='dark'] {
+  --lp-pane-bg: #14161c;
+  --lp-pane-border: #2c313c;
+  --lp-pane-text: #d5dae3;
+  --lp-hint: #8b949e;
+
+  --tok-delimiter: #d2a8ff;
+  --tok-keyword: #ff7b72;
+  --tok-braze-attr: #56d364;
+  --tok-string: #e5c07b;
+  --tok-filter: #79c0ff;
+  --tok-comment: #8b949e;
+}
+
+html,
+body {
+  font-family: var(--lp-font-sans);
+}
+
+.hero.is-small .hero-body {
+  padding-top: 2.5rem;
+}
+
+/* ---------------------------------------------------------------- toolbar */
+
+.toolbar {
+  padding: 0.75rem 1rem;
+}
+
+.toolbar .level-left,
+.toolbar .level-right {
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 768px) {
+  .toolbar .level-left,
+  .toolbar .level-right {
+    width: 100%;
+  }
+
+  .toolbar .level-right {
+    margin-top: 0.75rem;
+  }
+}
+
+/* Live-format switch (Bulma 1.x ships no switch element) */
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 2rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.switch input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch .switch-track {
+  position: relative;
+  display: inline-block;
+  width: 2.25rem;
+  height: 1.25rem;
+  border-radius: 999px;
+  background: var(--bulma-border, #dbdee6);
+  transition: background 0.15s ease-in-out;
+}
+
+.switch .switch-track::after {
+  content: '';
+  position: absolute;
+  top: 0.1875rem;
+  left: 0.1875rem;
+  width: 0.875rem;
+  height: 0.875rem;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.15s ease-in-out;
+}
+
+.switch input:checked + .switch-track {
+  background: var(--bulma-link, #485fc7);
+}
+
+.switch input:checked + .switch-track::after {
+  transform: translateX(1rem);
+}
+
+.switch input:focus-visible + .switch-track {
+  outline: 2px solid var(--bulma-link, #485fc7);
+  outline-offset: 2px;
+}
+
+.switch .switch-label {
+  font-size: 0.875rem;
+}
+
+/* ------------------------------------------------------------------ panes */
+
+.panel-heading-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.panel-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.panel-hint {
+  font-size: 0.8125rem;
+  color: var(--lp-hint);
+  text-align: right;
+}
+
+.panel-hint.is-ok {
+  color: var(--tok-braze-attr);
+}
+
+.panel-hint.is-error {
+  color: var(--tok-keyword);
+}
+
+.code-pane {
+  height: calc(100vh - 21rem);
+  min-height: 24rem;
+  margin: 0;
+  padding: 1rem;
+  border: 1px solid var(--lp-pane-border);
+  border-radius: 6px;
+  background-color: var(--lp-pane-bg);
+  color: var(--lp-pane-text);
+  font-family: var(--lp-font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  tab-size: 4;
+}
+
+textarea.code-pane {
+  resize: vertical;
+  white-space: pre;
+  overflow: auto;
+  box-shadow: none;
+}
+
+textarea.code-pane:focus {
+  border-color: var(--bulma-link, #485fc7);
+  box-shadow: none;
+}
+
+.output-pane {
+  overflow: auto;
+  white-space: pre;
+}
+
+.output-pane code {
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* ------------------------------------------------------- syntax highlight */
+
+.token-delimiter {
+  color: var(--tok-delimiter);
+  font-weight: 600;
+}
+
+.token-keyword {
+  color: var(--tok-keyword);
+  font-weight: 600;
+}
+
+.token-braze-attr {
+  color: var(--tok-braze-attr);
+}
+
+.token-string {
+  color: var(--tok-string);
+}
+
+.token-filter {
+  color: var(--tok-filter);
+}
+
+.token-comment {
+  color: var(--tok-comment);
+  font-style: italic;
+}

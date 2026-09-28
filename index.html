@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Liquid Prettier</title>
+
+    <!-- Bulma -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+
+    <!-- Open source font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Hero / header -->
+    <section class="hero is-small">
+        <div class="hero-body pb-4">
+            <div class="container">
+                <div class="level mb-0">
+                    <div class="level-left">
+                        <div>
+                            <h1 class="title is-3">Liquid Prettier</h1>
+                            <p class="subtitle is-6">A Tool for pretty printing liquid with support for Braze Tags</p>
+                        </div>
+                    </div>
+                    <div class="level-right">
+                        <button class="button is-small" id="themeBtn">🌙 Dark</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section pt-0">
+        <div class="container">
+
+            <!-- Toolbar -->
+            <div class="box toolbar mb-4">
+                <div class="level is-mobile-stacked mb-0">
+                    <div class="level-left">
+                        <div class="level-item">
+                            <div class="field is-grouped is-grouped-multiline mb-0">
+                                <div class="control">
+                                    <div class="select is-small">
+                                        <select id="indentStyle" aria-label="Indent style">
+                                            <option value="2">2 Spaces</option>
+                                            <option value="4">4 Spaces</option>
+                                            <option value="tab">Tabs</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="control">
+                                    <button class="button is-small is-link" id="formatBtn">Format</button>
+                                </div>
+                                <div class="control">
+                                    <label class="switch" for="liveToggle">
+                                        <input type="checkbox" id="liveToggle" checked>
+                                        <span class="switch-track" aria-hidden="true"></span>
+                                        <span class="switch-label">Live format</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="level-right">
+                        <div class="level-item">
+                            <div class="field is-grouped mb-0">
+                                <div class="control">
+                                    <button class="button is-small" id="copyBtn">Copy to clipboard</button>
+                                </div>
+                                <div class="control">
+                                    <button class="button is-small is-danger is-light" id="clearBtn">Clear</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Split screen -->
+            <div class="columns is-variable is-4">
+                <div class="column is-half">
+                    <div class="panel-heading-row">
+                        <span class="panel-title">Input</span>
+                        <span class="panel-hint">Raw Braze Liquid</span>
+                    </div>
+                    <textarea id="input" class="textarea code-pane" spellcheck="false" autocomplete="off"
+                        autocapitalize="off" autocorrect="off" placeholder="{%if {{custom_attribute.${account_status}}} == 'active'%}
+<div class=&quot;welcome&quot;>
+<h1>Welcome back, {{${first_name}|default: 'valued customer'}}!</h1>
+{%endif%}"></textarea>
+                </div>
+
+                <div class="column is-half">
+                    <div class="panel-heading-row">
+                        <span class="panel-title">Output</span>
+                        <span class="panel-hint" id="status">Paste Liquid on the left to get started.</span>
+                    </div>
+                    <pre class="code-pane output-pane"><code id="output"></code></pre>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
